@@ -1,0 +1,7 @@
+{
+  "from_email": "mihaiu.mihaukov@gmail.com",
+  "password": "nwzpcwpmlnattijk",
+  "smtp_server": "smtp.gmail.com",
+  "smtp_port": 587,
+  "to_email": "mihaiu.mihaukov@yahoo.com"
+}
