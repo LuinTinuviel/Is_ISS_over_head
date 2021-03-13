@@ -60,12 +60,14 @@ def get_sunrise_sunset_data():
     return sunrise, sunset
 
 
-def is_iss_visible():
+def is_iss_visible(day_hours=None):
     iss_location = get_iss_location()
     my_location = (api_params["sunrise_api_parameters"]["lng"], api_params["sunrise_api_parameters"]["lat"])
-    day_hours = get_sunrise_sunset_data()
+    if day_hours is None:
+        day_hours = get_sunrise_sunset_data()
     current_time = datetime.now()
 
+    print("############## Location Data ##############")
     print(f'ISS Location: {iss_location}')
     print(f'My location: {my_location}')
     print(f'Day hours: {day_hours}')
@@ -73,6 +75,7 @@ def is_iss_visible():
 
     print(f'long difference: {abs(my_location[0] - iss_location[0])}')
     print(f'lat difference: {abs(my_location[1] - iss_location[1])}')
+    print("############################################\n\n")
 
     if abs(my_location[0] - iss_location[0]) < 5 and abs(my_location[1] - iss_location[1]) < 5:
         print("Location Okay, checking time")
@@ -83,7 +86,6 @@ def is_iss_visible():
 
 
 # Your position is within +5 or -5 degrees of the ISS position.
-send_notification_email()
 while True:
     if is_iss_visible():
         send_notification_email()
